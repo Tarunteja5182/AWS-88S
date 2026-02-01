@@ -1,15 +1,24 @@
 #!/bin/bash
 
+user_id = $(id -u)
+logs_folder="/var/log/shellscript"
+logs_file="/var/log/shellscript/$0.log"
+
+if [ $user_id -ne 0 ]; then
+   echo "Please run the script with sudo user" | tee -a $LOGS_FILE
+   exit 1
+fi
+ 
 echo -e "I am installing and starting nginx via shell scripting"
 
-nginx -v
+nginx -v &|tee -a $logs_file
 
 if [ $? -ne 0 ]; then
-   sudo dnf install nginx -y 
+   sudo dnf install nginx -y &>> $logs_file
    sudo systemctl start nginx
    sudo systemctl enable nginx
 else
-      echo -e "nginx is already installed"
+      echo -e "nginx is already installed" | tee -a $LOGS_FILE
 fi
 
 
