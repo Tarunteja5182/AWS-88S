@@ -14,7 +14,7 @@ fi
  
 echo "I am installing and starting nginx via shell scripting"
 
-nginx -v |tee -a $logs_file
+nginx -v
 
 if [ $? -ne 0 ]; then
    sudo dnf install nginx -y &>> $logs_file
