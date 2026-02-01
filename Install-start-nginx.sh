@@ -2,7 +2,8 @@
 
 user_id=$(id -u)
 logs_folder="/var/log/shellscript"
-logs_file="/var/log/shellscript/$0.log"
+timestamp=$(date +"%Y%m%d_%H%M%S")
+logs_file="$logs_folder/$(basename $0)_$timestamp.log"
 
 mkdir -p "$logs_folder"
 
