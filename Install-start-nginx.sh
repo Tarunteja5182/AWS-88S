@@ -19,8 +19,13 @@ nginx -v
 
 if [ $? -ne 0 ]; then
    sudo dnf install nginx -y &>> $logs_file
-   sudo systemctl start nginx
-   sudo systemctl enable nginx
+    if [ $? -ne 0 ]; then
+     echo "Nginx installation failed" | tee -a "$logs_file"
+    else
+     echo "nginx installation success" | tee -a "$logs_file"
+     sudo systemctl start nginx
+     sudo systemctl enable nginx
+   fi
 else
       echo -e "nginx is already installed" | tee -a $logs_file
 fi
