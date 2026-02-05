@@ -3,7 +3,7 @@
 # This will count no of words in a given text file
 
 file2read=$1
-ls -lrth|grep $file2
+ls -lrth|grep $file2read
 if [ $? -eq 2 ];then
   echo "no such file or file or directory $file2read"
   exit 1
