@@ -4,9 +4,9 @@
 
 file2read=$1
 ls -lrth|grep $file2read > /dev/null 2>&1
-if [ $? -eq 2 ];then
-  echo "no such file or directory $file2read"
-  exit 1
+if [ ! -e "$file2read" ]; then
+    echo "no such file or directory $file2read"
+    exit 1
 fi
 
 while read line;
