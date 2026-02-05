@@ -12,4 +12,4 @@ fi
 while (read line);
 do 
 echo "$line"
-done < $file2read
+done < "$file2read"
