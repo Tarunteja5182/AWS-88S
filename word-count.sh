@@ -9,7 +9,7 @@ if [ $? -eq 2 ];then
   exit 1
 fi
 
-while (read line);
+while read line;
 do 
 echo "$line"
 done < "$file2read"
