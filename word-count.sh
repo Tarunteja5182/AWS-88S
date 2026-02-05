@@ -11,5 +11,5 @@ fi
 
 while (read line);
 do 
-echo $line
+echo "$line"
 done < $file2read
