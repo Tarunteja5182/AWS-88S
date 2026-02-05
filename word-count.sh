@@ -4,7 +4,7 @@
 
 file2read=$1
 ls -lrth|grep $file2
-if [$? eq 2];then
+if [ $? eq 2 ];then
   echo "no such file or file or directory $file2read"
   exit 1
 fi
@@ -12,4 +12,4 @@ fi
 while (read line);
 do 
 echo $line
-done >>> $file2read
+done < $file2read
