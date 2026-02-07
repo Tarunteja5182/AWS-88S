@@ -3,7 +3,7 @@
   vars:
    id : 549
    branch : CSE
-  tasks:
-   - name: print the student's id and branch
+  tasks :
+   - name : print the student's id and branch
      ansible.builtin.debug:
      msg: "Student Id is {{ id }} and course is {{ branch }}"      
