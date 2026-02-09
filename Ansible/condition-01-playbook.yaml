@@ -8,6 +8,6 @@
   tasks : 
    - name : check condition
      ansible.builtin.debug:
-       msg: "Enterd value {{ i }} is multiple  of 5"
-     when : i/5 = 0 
+       msg: "Enterd value {{ i }} is a postive number"
+     when : i > 0 
    
