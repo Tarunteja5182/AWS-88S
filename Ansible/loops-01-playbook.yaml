@@ -12,7 +12,7 @@
   #    - Keerthi suresh
      - name : Install applications
        ansible.builtin.package:    
-        name : "{{ item }}  
+        name : "{{ item }}"
         state : present
        loop:
         - nginx
