@@ -1,0 +1,12 @@
+- name : learning loops in ansi
+  hosts : local
+  connection : local    
+  tasks :
+  - name : looping through names
+    ansible.builtin.debug:
+       msg: "There are my favourite celebrities : {{ name }}"
+    loop:
+     - Mahesh babu
+     - MS Dhoni
+     - Keerthi suresh
+
