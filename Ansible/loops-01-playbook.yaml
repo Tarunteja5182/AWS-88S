@@ -2,11 +2,18 @@
   hosts : local
   connection : local    
   tasks :
-  - name : looping through names
-    ansible.builtin.debug:
-       msg: "There are my favourite celebrities : {{ item }}"
-    loop:
-     - Mahesh babu
-     - MS Dhoni
-     - Keerthi suresh
+  # - name : looping through names
+  #   ansible.builtin.debug:
+  #      msg: "There are my favourite celebrities : {{ item }}"
+  #   loop:
+  #    - Mahesh babu
+  #    - MS Dhoni
+  #    - Keerthi suresh
+     - name : Install applications
+       ansible.builtin.package:
+        msg: "Installing :{{ item }}"
+       loop:
+        - nginx
+        - mysql
+        - python 
 
