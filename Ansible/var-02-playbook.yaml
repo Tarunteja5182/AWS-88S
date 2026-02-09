@@ -1,0 +1,12 @@
+name : Vairable Presidence
+hosts: local
+connection: local
+vars:
+  txt: "This is a play level variable"
+tasks:
+  -name: Proof of variable Presidence
+  vars:
+   txt: "This is a task level variable"
+  ansible.builtin.debug:
+   msg: "{{ txt }}"
+   
