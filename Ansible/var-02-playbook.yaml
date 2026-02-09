@@ -6,7 +6,8 @@
   # vars_files:
   #  - vars-play
   vars_prompt:
-   - prompt : "please enter txt"
+   - name : txt
+     prompt : "please enter txt"
      private : false
   tasks:
    - name: Proof of variable Presidence
