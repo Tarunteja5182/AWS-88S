@@ -3,8 +3,11 @@
   connection: local
   vars:
    txt: "This is a play level variable"
-  vars_files:
-   - vars-play
+  # vars_files:
+  #  - vars-play
+  vars_prompt:
+   - prompt : "please enter txt"
+     private : false
   tasks:
    - name: Proof of variable Presidence
     #  vars:
