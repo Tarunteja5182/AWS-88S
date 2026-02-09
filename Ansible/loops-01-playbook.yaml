@@ -10,8 +10,7 @@
   #    - MS Dhoni
   #    - Keerthi suresh
      - name : Install applications
-       ansible.builtin.package:
-        msg: "Installing :{{ item }}"
+       ansible.builtin.package:        
        loop:
         - nginx
         - mysql
