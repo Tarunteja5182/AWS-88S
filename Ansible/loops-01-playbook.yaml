@@ -4,7 +4,7 @@
   tasks :
   - name : looping through names
     ansible.builtin.debug:
-       msg: "There are my favourite celebrities : {{ name }}"
+       msg: "There are my favourite celebrities : {{ item }}"
     loop:
      - Mahesh babu
      - MS Dhoni
