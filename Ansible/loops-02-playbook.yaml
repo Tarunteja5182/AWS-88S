@@ -1,0 +1,11 @@
+- name : Install only selected packages
+  hosts : local
+  connection : local
+  become : yes
+- tasks:
+  ansible.builtin.package:
+   name : "{{ item.name , item.state }}"
+  loop:
+   - "{{ nginx, present }}" 
+   - "{{ mysql, present }}"
+   - "{{ python, absent }}"
