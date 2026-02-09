@@ -19,4 +19,4 @@
    - name : check value is negative or 0
      ansible.builtin.debug:
        msg: "Enterd value {{ i }} is a 0"
-     when : i | int = 0
+     when : i | int == 0
