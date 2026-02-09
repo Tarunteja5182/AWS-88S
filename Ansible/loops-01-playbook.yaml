@@ -1,6 +1,7 @@
 - name : learning loops in ansi
   hosts : local
-  connection : local    
+  connection : local  
+  become : yes  
   tasks :
   # - name : looping through names
   #   ansible.builtin.debug:
@@ -10,7 +11,9 @@
   #    - MS Dhoni
   #    - Keerthi suresh
      - name : Install applications
-       ansible.builtin.package:        
+       ansible.builtin.package:    
+        name : {{ item }}    
+        state : present
        loop:
         - nginx
         - mysql
