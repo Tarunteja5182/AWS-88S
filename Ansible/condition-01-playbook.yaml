@@ -11,7 +11,7 @@
        msg: "Enterd value {{ i }} is a postive number"
      when : i | int > 0 
    
-    - name : check value is negative or 0
-      ansible.builtin.debug:
+   - name : check value is negative or 0
+     ansible.builtin.debug:
        msg: "Enterd value {{ i }} is either a negative number or a 0"
-      when : i | int < 0
+     when : i | int < 0
