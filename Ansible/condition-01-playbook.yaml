@@ -1,4 +1,6 @@
 - name : Learning conitions in ansi
+  hosts : local
+  connection : local
   vars_prompt:
    - name: i
      prompt : "enter the value"
