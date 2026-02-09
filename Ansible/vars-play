@@ -1,1 +1,1 @@
-txt : "This is a file level variable"
+txt : "a file level variable"
