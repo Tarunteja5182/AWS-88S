@@ -1,0 +1,26 @@
+name: Setup MangoDB
+hosts:
+become : yes
+tasks:
+ - name: Copying mango repo
+   ansible.builtin.copy:
+    src: mango.repo
+    dest: /etc/yum.repos.d/
+    remote_src: yes
+ - name: Installing MangoDB
+   ansible.builtin.dnf:
+     name : MangoDB
+     state : present
+ - name: Replace the local-host
+   ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0' 
+ - name: Start the mangodb services
+   ansible.builtin.service:
+      name : MangoDB
+      state : started
+      enabled : yes
+      
+
+

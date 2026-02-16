@@ -1,0 +1,17 @@
+name: Installing mysql
+hosts: 
+become : yes
+tasks:
+
+- name: install mysql 
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
+- name: mysql service
+  ansible.builtin.service:
+    state: restarted
+    enabled: yes
+
+- name: change root password
+  ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1

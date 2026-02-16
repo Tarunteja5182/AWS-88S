@@ -1,0 +1,27 @@
+name: Installing Redis
+hosts:
+become: yes
+tasks: 
+- name : Disable redis
+  ansible.builtin.command: dnf module disable redis -y
+
+- name : enable redis
+  ansible.builtin.command: dnf module enable redis:7 -y
+
+- name : install redis
+  ansible.buitin.dnf:
+    name: redis
+    state: present
+
+- name : replacing adress
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0' 
+   
+- name : start redis
+  ansible.builtin.service:
+   name: redis
+   state: restarted
+   enabled: yes
+  
