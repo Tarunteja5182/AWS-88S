@@ -58,6 +58,14 @@ tasks:
   ansible.builtin.systemd_service:
     daemon_reload: true
 
+- name: Install dependencies
+  ansible.builtin.pip:
+    name : "{{ item }}"
+    executable : pip3.9
+    loop:
+    - pymysql
+    - cryptography
+
 - name: Import data
   community.mysql.mysql_db:
     state: import
