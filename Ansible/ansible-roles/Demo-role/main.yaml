@@ -1,4 +1,5 @@
 - name : This is a demo for ansible role
   hosts: localhost
+  connection: local
   roles:
    -  Demo-role
