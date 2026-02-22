@@ -26,8 +26,8 @@
     
   - name: creating directory
     ansible.builtin.file:
-    path : /app
-    state: directory
+      name : /app
+      state: directory
 
   - name : delete /tmp/user.zip
     ansible.builtin.file:
@@ -37,8 +37,8 @@
 
   - name: Downloadin the code
     ansible.builtin.get_url:
-    url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
-    dest : /tmp/user.zip
+      url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
+      dest : /tmp/user.zip
 
   - name: unzip the code
     ansible.builtin.unarchive:
