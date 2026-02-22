@@ -48,7 +48,7 @@
 
   - name: Install dependencies
     community.general.npm:
-    path: /app
+     path: /app
 
   - name: copy service
     ansible.builtin.template:
