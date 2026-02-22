@@ -37,7 +37,7 @@
   - name: unarchive the code
     ansible.builtin.unarchive:
       src: /tmp/shipping.zip
-      path: /app
+      dest: /app
 
   - name: install dependencies
     ansible.builtin.command: mvn clean package
