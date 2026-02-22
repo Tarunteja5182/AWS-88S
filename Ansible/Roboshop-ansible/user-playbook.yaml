@@ -17,7 +17,7 @@
       comment : "roboshop system user"
       system: yes
       shell: /sbin/nologin
-      path: /app
+      home: /app
 
   - name: deleting directory
     ansible.builtin.file:
