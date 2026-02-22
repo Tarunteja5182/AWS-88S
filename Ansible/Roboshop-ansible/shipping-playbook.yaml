@@ -63,9 +63,9 @@
     ansible.builtin.pip:
       name : "{{ item }}"
       executable : pip3.9
-      loop:
-      - pymysql
-      - cryptography
+    loop:
+     - pymysql
+     - cryptography
 
   - name: Import data
     community.mysql.mysql_db:
@@ -75,7 +75,7 @@
       login_user : root
       login_password: roboshop@1
       target: "{{ item }}"
-      loop:
+    loop:
       - /app/db/schema.sql
       - /app/db/app-user.sql 
       - /app/db/master-data.sql
