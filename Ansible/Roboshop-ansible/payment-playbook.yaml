@@ -5,7 +5,7 @@
  
   - name: Installing python
     ansible.builtin.dnf:
-      name: 
+      name: {{ item }}
       state: present
     loop:
     - python
