@@ -23,7 +23,7 @@
   - name: deleting app directory
     ansible.builtin.file:
       path : /app
-      staate : absent
+      state : absent
 
   - name: creating app directory
     ansible.builtin.file:
