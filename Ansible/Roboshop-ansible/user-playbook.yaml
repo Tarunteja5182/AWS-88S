@@ -26,7 +26,7 @@
     
   - name: creating directory
     ansible.builtin.file:
-      name : /app
+      path : /app
       state: directory
 
   - name : delete /tmp/user.zip
@@ -35,7 +35,7 @@
       state: absent
       
 
-  - name: Downloadin the code
+  - name: Downloading the code
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
       dest : /tmp/user.zip
