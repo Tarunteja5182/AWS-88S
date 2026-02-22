@@ -1,0 +1,4 @@
+- name: include apt tasks
+  include_role:
+      name: common
+      tasks_from: app-setup.yml

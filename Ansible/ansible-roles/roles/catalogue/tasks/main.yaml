@@ -1,0 +1,46 @@
+  - name: enable current nodejs
+    ansible.builtin.command: dnf module enable nodejs:20 -y
+ 
+  - name: Installing nodejs
+    ansible.builtin.dnf:
+     name: nodejs
+     state : present
+ 
+  
+  - name: Install catalogue node.js package
+    community.general.npm:
+      path: /app
+  
+  -  name: Force systemd to reread configs 
+     ansible.builtin.systemd_service:
+      daemon_reload: true
+  
+  -  name: copy catalogue service
+     ansible.builtin.copy:
+        src: catalogue.service
+        dest: /etc/systemd/system/catalogue.service
+  
+  - name: Copying mongo repo
+    ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  - name: install mongodb client
+    ansible.builtin.dnf:
+        name: mongodb-mongosh
+        state: present
+
+  - name: check if data is already loaded or not
+    ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}" --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+    register: catalogue_output
+
+  - name: loading data to mangodb
+    ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}" < /app/db/master-data.js  
+    when: catalogue_output.stdout | int < 0
+
+  -  name: Start the catalogue services
+     ansible.builtin.service:
+        name : catalogue
+        state : restarted
+        enabled : yes
+  
