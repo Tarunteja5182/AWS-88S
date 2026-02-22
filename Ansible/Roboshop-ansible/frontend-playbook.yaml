@@ -28,8 +28,8 @@
 
   - name : unarchiving the frontend
     ansible.builtin.unarchive:
-      src: /tmp
-      dest: /tmp/frontend.zip
+      src: /tmp/frontend.zip
+      dest: /usr/share/nginx/html
       remote_src: yes
 
   - name : removing nginx conf
