@@ -10,7 +10,7 @@
       
   - name: Installing MongoDB
     ansible.builtin.dnf:
-      name : MongoDB
+      name : mongodb-org
       state : present
   - name: Replace the local-host
     ansible.builtin.replace:
@@ -19,7 +19,7 @@
       replace: '0.0.0.0' 
   - name: Start the mongodb services
     ansible.builtin.service:
-        name : MongoDB
+        name : mongod
         state : started
         enabled : yes
         
