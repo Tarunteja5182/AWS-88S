@@ -1,5 +1,5 @@
 name: Setup Catalogue
-hosts:
+hosts: catalogue
 become: yes
 tasks:
  - name: enable current nodejs

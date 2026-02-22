@@ -1,5 +1,5 @@
 name: settingup payment
-hosts:
+hosts: payment
 become: yes
 tasks:
  

@@ -1,5 +1,5 @@
 name: Installing Redis
-hosts:
+hosts: redis
 become: yes
 tasks: 
 - name : Disable redis

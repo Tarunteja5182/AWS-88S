@@ -1,5 +1,5 @@
 name: Setup MangoDB
-hosts:
+hosts: mangodb
 become : yes
 tasks:
  - name: Copying mango repo

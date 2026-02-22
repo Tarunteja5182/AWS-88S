@@ -1,5 +1,5 @@
 name: settingup rabbitmq
-hosts: 
+hosts: rabbitmq
 become : yes
 tasks:
 

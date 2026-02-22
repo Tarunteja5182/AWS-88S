@@ -1,5 +1,5 @@
 name: Setting up user module
-hosts:
+hosts: user
 become: yes
 tasks:
 

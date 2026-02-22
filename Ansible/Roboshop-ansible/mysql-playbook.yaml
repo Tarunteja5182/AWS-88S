@@ -1,5 +1,5 @@
 name: Installing mysql
-hosts: 
+hosts: mysql
 become : yes
 tasks:
 
