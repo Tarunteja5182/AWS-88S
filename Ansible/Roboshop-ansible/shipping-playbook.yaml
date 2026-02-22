@@ -31,8 +31,8 @@
 
   - name: Dowload the application code
     ansible.builtin.get_url:
-    url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
-    dest: /tmp
+      url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
+      dest: /tmp
 
   - name: unarchive the code
     ansible.builtin.unarchive:
