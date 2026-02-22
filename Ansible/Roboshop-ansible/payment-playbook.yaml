@@ -48,7 +48,7 @@
 
   - name: download dependencies
     ansible.builtin.pip:
-     requirments: requirments.txt
+     requirements: requirements.txt
      executable : pip3.9  
     args:
      chdir : /app
