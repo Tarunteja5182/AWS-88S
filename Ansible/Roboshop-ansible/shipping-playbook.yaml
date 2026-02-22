@@ -1,7 +1,7 @@
-name : settingup shipping
-hosts: shipping
-become : yes
-tasks:
+- name : settingup shipping
+  hosts: shipping
+  become : yes
+  tasks:
 
 - name: install maven
   ansible.builtin.dnf:

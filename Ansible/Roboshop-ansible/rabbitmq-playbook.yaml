@@ -1,7 +1,7 @@
-name: settingup rabbitmq
-hosts: rabbitmq
-become : yes
-tasks:
+- name: settingup rabbitmq
+  hosts: rabbitmq
+  become : yes
+  tasks:
 
 - name: copying rabbitmq repo
   ansible.builtin.copy:

@@ -1,7 +1,7 @@
-name: settingup payment
-hosts: payment
-become: yes
-tasks:
+- name: settingup payment
+  hosts: payment
+  become: yes
+  tasks:
  
 - name: Installing python
   ansible.builtin.dnf:
