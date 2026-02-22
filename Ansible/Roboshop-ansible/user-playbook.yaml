@@ -47,7 +47,7 @@
       remote_src: yes
 
   - name: Install dependencies
-    ansible.general.npm:
+    community.general.npm:
     path: /app
 
   - name: copy service
