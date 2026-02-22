@@ -3,65 +3,65 @@
   become: yes
   tasks:
 
-- name: enable nodejs 20
-  ansible.builtin.command: dnf module enable nodejs:20 -y
+  - name: enable nodejs 20
+    ansible.builtin.command: dnf module enable nodejs:20 -y
 
-- name : Install nodeJS
-  ansible.builtin.dnf:
-   name: nodeJS
-   state: present
-  
-- name: Adding roboshop user
-  ansible.builtin.user:
-    name: roboshop
-    comment : "roboshop system user"
-    system: yes
-    shell: /sbin/nologin
+  - name : Install nodeJS
+    ansible.builtin.dnf:
+      name: nodeJS
+      state: present
+    
+  - name: Adding roboshop user
+    ansible.builtin.user:
+      name: roboshop
+      comment : "roboshop system user"
+      system: yes
+      shell: /sbin/nologin
+      path: /app
+
+  - name: deleting directory
+    ansible.builtin.file:
+      path: /app
+      state: absent
+    
+  - name: creating directory
+    ansible.builtin.file:
+    path : /app
+    state: directory
+
+  - name : delete /tmp/user.zip
+    ansible.builtin.file:
+      path: /tmp
+      state: absent
+      
+
+  - name: Downloadin the code
+    ansible.builtin.get_url:
+    url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
+    dest : /tmp/user.zip
+
+  - name: unzip the code
+    ansible.builtin.unarchive:
+      scr : /tmp/user.zip
+      dest: /app
+      remote_src: yes
+
+  - name: Install dependencies
+    ansible.general.npm:
     path: /app
 
-- name: deleting directory
-  ansible.builtin.file:
-   path: /app
-   state: absent
-  
-- name: creating directory
-  ansible.builtin.file:
-   path : /app
-   state: directory
-
-- name : delete /tmp/user.zip
-  ansible.builtin.file:
-    path: /tmp
-    state: absent
-    
-
-- name: Downloadin the code
-  ansible.builtin.get_url:
-   url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
-   dest : /tmp/user.zip
-
-- name: unzip the code
-  ansible.builtin.unarchive:
-    scr : /tmp/user.zip
-    dest: /app
-    remote_src: yes
-
-- name: Install dependencies
-  ansible.general.npm:
-   path: /app
-
-- name: copy service
-  ansible.builtin.template:
-    src: user.service
-    dest: /etc/systemd/system/
+  - name: copy service
+    ansible.builtin.template:
+      src: user.service
+      dest: /etc/systemd/system/
 
 
-- name: Relaod daemon 
-  ansible.builtin.systemd_service:
-    daemon_reload: true
+  - name: Relaod daemon 
+    ansible.builtin.systemd_service:
+      daemon_reload: true
 
-- name: starting user
-  ansible.builtin.service:
-    name : user
-    state: restarted
-    enabled: yes
+  - name: starting user
+    ansible.builtin.service:
+      name : user
+      state: restarted
+      enabled: yes
