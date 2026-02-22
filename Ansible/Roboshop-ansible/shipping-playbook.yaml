@@ -53,7 +53,7 @@
   - name: copying shiping services
     ansible.builtin.copy:
       src : shipping.service
-      path: /etc/systemd/system/
+      dest : /etc/systemd/system/
       
   - name: reload daemon
     ansible.builtin.systemd_service:
