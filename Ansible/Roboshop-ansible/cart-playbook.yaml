@@ -3,64 +3,64 @@
   become: yes
   tasks:
 
-- name: enable nodejs
-  ansible.builtin.command: dnf module enable nodejs:20 -y
+  - name: enable nodejs
+    ansible.builtin.command: dnf module enable nodejs:20 -y
 
-- name : Install nodejs
-  ansible.builtin.dnf:
-   name : nodejs
-   state: present
-  
-- name : adding roboshop user
-  ansible.builtin.user:
-   name : roboshop
-   comments: "Roboshop system user"
-   system: yes
-   shell : /sbin/nologin
-   path : /app
+  - name : Install nodejs
+    ansible.builtin.dnf:
+      name : nodejs
+      state: present
+      
+  - name : adding roboshop user
+    ansible.builtin.user:
+      name : roboshop
+      comments: "Roboshop system user"
+      system: yes
+      shell : /sbin/nologin
+      path : /app
 
-- name: delete app directory
-  ansible.builtin.file:
-   path: /app
-   state: absent
+  - name: delete app directory
+    ansible.builtin.file:
+      path: /app
+      state: absent
 
-- name: creating app directory
-  ansible.builtin.file:
-    path : /app
-    state: directory
+  - name: creating app directory
+    ansible.builtin.file:
+      path : /app
+      state: directory
 
-- name: delete cart 
-  ansible.builtin.file:
-    path : /tmp/cart.zip
-    state: absent
+  - name: delete cart 
+    ansible.builtin.file:
+      path : /tmp/cart.zip
+      state: absent
 
-- name : downloading the code
-  ansible.builtin.get_url:
-    url: https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
-    dest: /tmp/cart.zip
+  - name : downloading the code
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
+      dest: /tmp/cart.zip
 
-- name : unzip the code
-  ansible.builtin.unarchive:
-    src : /tmp/cart.zip
-    dest: /app
-    remote_src: yes
-    
-- name: download dependencies
-  ansible.general.npm:
-    path : /app
+  - name : unzip the code
+    ansible.builtin.unarchive:
+      src : /tmp/cart.zip
+      dest: /app
+      remote_src: yes
+      
+  - name: download dependencies
+    ansible.general.npm:
+      path : /app
 
-- name: copying service
-  ansible.builtin.copy:
-    src: cart.service
-    dest: /etc/systemd/system/
+  - name: copying service
+    ansible.builtin.copy:
+      src: cart.service
+      dest: /etc/systemd/system/
 
-- name: Relaod daemon 
-  ansible.builtin.systemd_service:
-    daemon_reload: true
+  - name: Relaod daemon 
+    ansible.builtin.systemd_service:
+      daemon_reload: true
 
-- name: starting cart
-  ansible.builtin.service:
-    name: cart
-    state: restarted
-    enabled : yes
-    
+  - name: starting cart
+    ansible.builtin.service:
+      name: cart
+      state: restarted
+      enabled : yes
+      
