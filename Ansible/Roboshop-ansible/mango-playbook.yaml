@@ -1,5 +1,5 @@
 - name: Setup MangoDB
-  hosts: mangodb
+  hosts: mongodb
   become : yes
   tasks:
 
