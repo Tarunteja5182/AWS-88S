@@ -5,7 +5,7 @@
 
   - name: Copying mango repo
     ansible.builtin.copy:
-      src: mango.repo
+      src: mongo.repo
       dest: /etc/yum.repos.d/
       remote_src: yes
   - name: Installing MongoDB
