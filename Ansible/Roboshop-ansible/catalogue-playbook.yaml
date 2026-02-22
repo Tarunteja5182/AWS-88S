@@ -69,11 +69,11 @@
         state: present
 
   - name: check if data is already loaded or not
-    ansible.builtin.command: mongosh --host {{ MONGODB_HOST }} --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")
+    ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}"" --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")
     register: catalogue_output
 
   - name: loading data to mangodb
-    ansible.builtin.command: mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js  
+    ansible.builtin.command: mongosh --host "{{ MONGODB_HOST }}"" </app/db/master-data.js  
     when: catalogue_output.stdout | int < 0
 
   -  name: Start the catalogue services
