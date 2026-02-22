@@ -46,8 +46,8 @@
       remote_src: yes
       
   - name: download dependencies
-    ansible.general.npm:
-      path : /app
+    community.general.npm:
+     path : /app
 
   - name: copying service
     ansible.builtin.copy:
