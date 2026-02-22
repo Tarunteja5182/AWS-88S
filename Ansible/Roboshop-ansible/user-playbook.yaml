@@ -2,9 +2,8 @@
   hosts: user
   become: yes
   tasks:
-
   - name: enable nodejs 20
-    ansible.builtin.command: dnf module enable nodejs:20 -y
+    ansible.builtin.command: dnf module enable nodejs:20 -y 
 
   - name : Install nodeJS
     ansible.builtin.dnf:
@@ -37,8 +36,8 @@
 
   - name: Downloading the code
     ansible.builtin.get_url:
-      url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
-      dest : /tmp/user.zip
+     url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
+     dest : /tmp/user.zip
 
   - name: unzip the code
     ansible.builtin.unarchive:
